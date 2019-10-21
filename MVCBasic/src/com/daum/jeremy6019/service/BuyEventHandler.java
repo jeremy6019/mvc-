@@ -11,10 +11,9 @@ import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 
 import com.daum.jeremy6019.dao.BuyDao;
+import com.daum.jeremy6019.dao.BuyDaoImpl;
 import com.daum.jeremy6019.domain.Buy;
 import com.daum.jeremy6019.view.BuyView;
-
-import dao.BuyDAO;
 
 public class BuyEventHandler implements ActionListener {
 	
@@ -114,7 +113,7 @@ public class BuyEventHandler implements ActionListener {
 				//현재 데이터를 가져오기 
 				Buy buy = buyView.list.get(buyView.idx);
 				//데이터베이스에서 삭제 
-				BuyDao dao = new BuyDao();
+				BuyDao dao = BuyDaoImpl.getBuyDao(); 
 				dao.deleteBuy(buy.getBuycode());
 				//메모리에서 삭제
 				buyView.list.remove(buyView.idx);
@@ -195,7 +194,7 @@ public class BuyEventHandler implements ActionListener {
 				   //데이터 수정 
 //				   buyView.list.remove(buyView.idx);
 //				   buyView.list.add(buyView.idx, buy);
-				   BuyDao dao = new BuyDao();
+				   BuyDao dao = BuyDaoImpl.getBuyDao(); 
 				   dao.updateBuy(buy);
 				   //데이터 다시 불러오기 
 				   buyView.list = dao.getListAll();
@@ -273,7 +272,7 @@ public class BuyEventHandler implements ActionListener {
 			buy1.setCount(
 					Integer.parseInt(buyCount));
 			//삽입하는 메소드 호출 
-			BuyDao dao = new BuyDao();
+			BuyDao dao = BuyDaoImpl.getBuyDao();
 			int r1 = dao.insertBuy(buy1) ;
 			//삽입 성공한 경우 
 			if( r1 > 0) {
@@ -311,15 +310,15 @@ public class BuyEventHandler implements ActionListener {
 					"코드를 입력하세요!!");
 			//취소 버튼을 누른 것이 아니라면 
 		    if( code != null) {
-		        dao = new BuyDao();
-		        buy = 
-		        		  dao.listBuy(buycode)(Integer.parseInt(code));
-		        if(buy == null) {
+		        dao = BuyDaoImpl.getBuyDao(); 
+		        Buy buy2 = 
+		        		  dao.listBuy(Integer.parseInt(code));
+		        if(buy2 == null) {
 		        	JOptionPane.showMessageDialog(
 							null, "없는 코드 입니다!!");		
 		        }
 		        buyView.list.clear();
-		        buyView.list.add(buy);
+		        buyView.list.add(buy2);
 		        buyView.idx = 0; 
 		        buyView.display();
 		    }

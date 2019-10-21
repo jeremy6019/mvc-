@@ -15,6 +15,15 @@ public class BuyDaoImpl implements BuyDao {
 	
 	private static BuyDao buyDao;
 	
+	
+	public static BuyDao getBuyDao() {
+		return buyDao;
+	}
+
+	public static void setBuyDao(BuyDao buyDao) {
+		BuyDaoImpl.buyDao = buyDao;
+	}
+
 	public static BuyDao getInstance() {
 		if(buyDao == null) {
 			buyDao = new BuyDaoImpl();

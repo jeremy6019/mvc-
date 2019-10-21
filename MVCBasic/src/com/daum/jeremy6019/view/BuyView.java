@@ -101,7 +101,7 @@ public class BuyView extends JFrame{
     	JPanel centerPanel = new JPanel();
     	centerPanel.setLayout(
     			new BorderLayout());
-    	centerPanel.add("center", p1);
+    	centerPanel.add("Center", p1);
     	
     	btnNext = new JButton("다음");
     	btnPrev = new JButton("이전");
@@ -126,7 +126,7 @@ public class BuyView extends JFrame{
     	p2.add(btnNext);
     	p2.add(btnLast);
     	
-    	centerPanel.add("south",p2);
+    	centerPanel.add("South",p2);
     	
     	add(centerPanel);
     	
@@ -140,7 +140,8 @@ public class BuyView extends JFrame{
     	btnDelete.addActionListener(eventHandler);
     	btnUpdate.addActionListener(eventHandler);
     	btnSearch.addActionListener(eventHandler);
-    	btnClear.addActionListener(eventHandler);    	
+    	btnClear.addActionListener(eventHandler);    
+    	
     	JPanel southPanel = new JPanel();
     	southPanel.setLayout(
     			new GridLayout(1,5,3,3)); 
@@ -153,7 +154,7 @@ public class BuyView extends JFrame{
     	add("South",southPanel);
     	
     	//전체 데이터 가져와서 list에 저장 
-//    	BuyDao dao = new BuyDaoImpl(); //질문사항
+   	    BuyDao dao = BuyDaoImpl.getBuyDao(); 
     	list = dao.getListAll();
     	
         setTitle("구매 테이블");
